@@ -1,9 +1,6 @@
 
 # php设计模式
 
-| 文件 | column |
-|--------|--------|
-|        |        |
 
 ## 单例模式
 `single.php`
@@ -33,3 +30,15 @@
 > [设计模式（五）适配器模式Adapter（结构型）](http://blog.csdn.net/hguisu/article/details/7527842)
 > [PHP设计模式之适配器模式(Adapter)](http://blog.samoay.me/post/view/14)
 
+
+## 工厂模式
+
+`factory`
+
+特点
+- 使用工厂创建类对象，而不直接使用`new`
+- 为创建一组相关或相互依赖的对象提供一个接口，而且无需指定它们的具体类
+
+参考
+
+> [PHP简单工厂、工厂模式和抽象工厂模式的比较](http://www.phpddt.com/php/php-factory.html)
