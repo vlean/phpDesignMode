@@ -19,6 +19,7 @@
 /**
  * 简单工厂模式
  */
+namespace tk\simpleFactory;
 
 interface animal
 {
@@ -73,12 +74,14 @@ $animal->say();
  * 工厂方法模式
  */
 
-interface animal2
+namespace tk\basicFactory;
+
+interface animal
 {
     function say();
 }
 
-class dog2 implements animal2
+class dog implements animal
 {
     public function say()
     {
@@ -86,7 +89,7 @@ class dog2 implements animal2
     }
 }
 
-class cat2 implements animal2
+class cat implements animal
 {
     public function say()
     {
@@ -95,32 +98,32 @@ class cat2 implements animal2
 }
 
 //工厂
-interface helloAnimal2
+interface helloAnimal
 {
     function hello();
 }
 
-class factoryAnimal1 implements helloAnimal2
+class factoryAnimal1 implements helloAnimal
 {
     private static $instance;
     public function hello()
     {
         if(is_null(self::$instance)){
             if(ANIMAL1=='dog')
-                self::$instance = new dog2();
+                self::$instance = new dog();
         }
         return self::$instance;
     }
 }
 
-class factoryAnimal2 implements helloAnimal2
+class factoryAnimal2 implements helloAnimal
 {
      private static $instance;
      public function hello()
      {
          if(is_null(self::$instance)){
              if(ANIMAL2=='cat')
-                 self::$instance = new cat2();
+                 self::$instance = new cat();
          }
          return self::$instance;
      }
@@ -137,12 +140,14 @@ $animal->say();
 /**
  * 抽象工厂模式
  */
-interface animal3
+namespace tk\abstractFactory;
+
+interface animal
 {
     function say();
 }
 
-class dog3 implements animal3
+class dog implements animal
 {
     public function say()
     {
@@ -150,7 +155,7 @@ class dog3 implements animal3
     }
 }
 
-class cat3 implements animal3
+class cat implements animal
 {
     public function say()
     {
@@ -160,7 +165,7 @@ class cat3 implements animal3
 
 
 
-class whale3 implements animal3
+class whale implements animal
 {
     public function say()
     {
@@ -168,7 +173,7 @@ class whale3 implements animal3
     }
 }
 
-class fish3 implements animal3
+class fish implements animal
 {
     public function say()
     {
@@ -176,27 +181,27 @@ class fish3 implements animal3
     }
 }
 //工厂
-interface helloAnimal3
+interface helloAnimal
 {
     function helloLandAnimal();
     function helloAquaticAnimal();
 }
 
-class helloAllAnimal implements helloAnimal3
+class helloAllAnimal implements helloAnimal
 {
      public function helloLandAnimal()
      {
          if(LAND_ANIMAL =="dog")
-             return new dog3;
+             return new dog;
          elseif(LAND_ANIMAL=="cat")
-             return new cat3;
+             return new cat;
      }
      public function helloAquaticAnimal()
      {
          if(AQUATIC_ANIMAL=="whale")
-             return new whale3;
+             return new whale;
          elseif(AQUATIC_ANIMAL=="fish")
-             return new fish3;
+             return new fish;
      }
 }
 
