@@ -27,22 +27,22 @@ interface animal
 
 class dog implements animal
 {
-    function say()
+    public function say()
     {
-         echo "汪";
+        echo "汪\n";
     }
 }
 
 class cat implements animal
 {
-    function say()
+    public function say()
     {
-         echo "喵";
+        echo "喵\n";
     }
 }
 
 //工厂
-class simpleFactory()
+class simpleFactory
 {
     private static $instance;
 
@@ -60,174 +60,160 @@ class simpleFactory()
 }
 
 
+//--------------------------
+//测试
+//--------------------------
+
+define("ANIMAL","dog");
+$animal = simpleFactory::getInstance();
+$animal->say();
+
+
 /**
  * 工厂方法模式
  */
 
-interface animal
+interface animal2
 {
     function say();
 }
 
-class dog implements animal
+class dog2 implements animal2
 {
-    function say()
+    public function say()
     {
-         echo "汪";
+        echo "汪\n";
     }
 }
 
-class cat implements animal
+class cat2 implements animal2
 {
-    function say()
+    public function say()
     {
-         echo "喵";
+        echo "喵\n";
     }
 }
 
-
-
-class whale implements animal
-{
-    function say()
-    {
-        echo "噗";
-    }
-}
-
-class fish implements animal
-{
-    function say()
-    {
-        echo "呜";
-    }
-}
 //工厂
-interface helloAnimal
+interface helloAnimal2
 {
     function hello();
 }
 
-class landAnimal implements helloAnimal
+class factoryAnimal1 implements helloAnimal2
 {
     private static $instance;
     public function hello()
     {
-        if(is_null($instance)){
-            if(LAND_ANIMAL=='dog')
-                self::$instance = new dog();
-            elseif(LAND_ANIMAL == 'cat')
-                self::$instance = new cat();
+        if(is_null(self::$instance)){
+            if(ANIMAL1=='dog')
+                self::$instance = new dog2();
         }
         return self::$instance;
     }
 }
 
-class aquaticAnimal implements helloAnimal
+class factoryAnimal2 implements helloAnimal2
 {
      private static $instance;
      public function hello()
      {
-         if(is_null($instance)){
-             if(AQUATIC_ANIMAL=='whale')
-                 self::$instance = new whale();
-             elseif(AQUATIC_ANIMAL == 'fish')
-                 self::$instance = new fish();
+         if(is_null(self::$instance)){
+             if(ANIMAL2=='cat')
+                 self::$instance = new cat2();
          }
          return self::$instance;
      }
 }
 
-class hianimal
-{
-     public function hi()
-     {
-        $landAnimal = new landAnimal;
-        $aquaticAnimal = new aquaticAnimal;
 
-        $landAnimal->say();
-        $aquaticAnimal->say();
-     }
-}
+//----------------------------
+//测试
+//----------------------------
+define("ANIMAL1","dog");
+$animal = factoryAnimal1::hello();
+$animal->say();
 
 /**
  * 抽象工厂模式
  */
-interface animal
+interface animal3
 {
     function say();
 }
 
-class dog implements animal
+class dog3 implements animal3
 {
-    function say()
+    public function say()
     {
-         echo "汪";
+         echo "汪\n";
     }
 }
 
-class cat implements animal
+class cat3 implements animal3
 {
-    function say()
+    public function say()
     {
-         echo "喵";
+         echo "喵\n";
     }
 }
 
 
 
-class whale implements animal
+class whale3 implements animal3
 {
-    function say()
+    public function say()
     {
-        echo "噗";
+        echo "噗\n";
     }
 }
 
-class fish implements animal
+class fish3 implements animal3
 {
-    function say()
+    public function say()
     {
-        echo "呜";
+        echo "呜\n";
     }
 }
 //工厂
-interface helloAnimal
+interface helloAnimal3
 {
     function helloLandAnimal();
     function helloAquaticAnimal();
 }
 
-class helloAllAnimal implements helloAnimal
+class helloAllAnimal implements helloAnimal3
 {
      public function helloLandAnimal()
      {
          if(LAND_ANIMAL =="dog")
-             return new dog;
+             return new dog3;
          elseif(LAND_ANIMAL=="cat")
-             return new cat;
+             return new cat3;
      }
      public function helloAquaticAnimal()
      {
          if(AQUATIC_ANIMAL=="whale")
-             return new whale;
+             return new whale3;
          elseif(AQUATIC_ANIMAL=="fish")
-             return new fish;
+             return new fish3;
      }
 }
 
 
-class hianimal
-{
-    function hi()
-    {
-        $animal = new helloAllAnimal;
-        $landAnimal = $animal->helloLandAnimal();
-        $aquaticAnimal = $animal->helloAquaticAnimal();
-        $landAnimal->say();
-        $aquaticAnimal->say();
-    }
-}
+//-------------------------
+//测试
+//-------------------------
+
+define("LAND_ANIMAL","cat");
+define("AQUATIC_ANIMAL","fish");
+
+$animal = new helloAllAnimal;
+$landAnimal = $animal->helloLandAnimal();
+$landAnimal->say();
+$aquaticAnimal = $animal->helloAquaticAnimal();
+$aquaticAnimal->say();
+
 
 
 /**
